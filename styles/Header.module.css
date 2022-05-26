@@ -1,0 +1,41 @@
+.header {
+    border-bottom: 2px solid var(--gris3);
+    padding: 1rem 0;
+}
+
+.contenedor {
+    max-width: 1200px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.logo {
+    color: var(--naranja);
+    font-size: 4rem;
+    line-height: 0;
+    font-weight: 700;
+    font-family: 'Roboto Slab', serif;
+    margin-right: 2rem;
+}
+
+.ul {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.ui {
+    display: flex;
+    align-items: center;
+}
+
+.ui p {
+    margin-right: 2rem;
+}
+
+@media (min-width: 768px) {
+    .contenedor {
+        display: flex;
+        justify-content: space-between;
+    }
+}

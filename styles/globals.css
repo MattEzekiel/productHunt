@@ -1,16 +1,61 @@
-html,
+@import "normalize.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Slab:wght@400;700&display=swap');
+
+:root {
+  --gris: #3d3d3d;
+  --gris2: #6f6f6f;
+  --gris3: #E1E1E1;
+  --naranja: #DA552F;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*,*:before,*:after {
+  box-sizing: inherit;
+}
+
 body {
-  padding: 0;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  font-family: 'PT Sans', sans-serif;
+}
+h1,h2,h3 {
+  margin: 0 0 2rem 0;
+  line-height: 1.5;
+}
+
+h1,h2 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+}
+
+h3 {
+  font-family: 'PT Sans', sans-serif;
+}
+
+ul {
+  list-style: none;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;  /* 2 */
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;            /* 3 */
 }
