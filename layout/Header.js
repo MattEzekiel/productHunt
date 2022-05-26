@@ -8,7 +8,7 @@ import {useContext} from "react";
 
 export default function Header() {
     const { usuario , firebase } = useContext(FirebaseContext);
-    console.log(usuario);
+    // console.log(usuario);
 
     return (
         <header className={Styles.header}>

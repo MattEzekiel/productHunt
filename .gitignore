@@ -31,3 +31,8 @@ yarn-error.log*
 # vercel
 .vercel
 .idea/inspectionProfiles/Project_Default.xml
+.idea/jsLibraryMappings.xml
+.idea/jsLibraryMappings.xml
+.idea/modules.xml
+.idea/producthunt.iml
+.idea/vcs.xml
