@@ -33,42 +33,47 @@ export default function Login() {
             titulo={"Iniciar Sesión"}
         >
             <h1 style={{ textAlign: "center", marginTop: "5rem" }}>Iniciar Sesión</h1>
-            <Formulario
-                onSubmit={handleSubmit}
-                noValidate
+            <div
+                style={{minHeight: "56.7vh"}}
             >
-                { error && <Error>{error}</Error> }
-                <Campo>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type={"email"}
-                        name={"email"}
-                        id={"email"}
-                        placeholder={"Tu email"}
-                        value={email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
+                <Formulario
+                    onSubmit={handleSubmit}
+                    noValidate
+                    className={"bg-white"}
+                >
+                    { error && <Error>{error}</Error> }
+                    <Campo>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type={"email"}
+                            name={"email"}
+                            id={"email"}
+                            placeholder={"Tu email"}
+                            value={email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                    </Campo>
+                    {errores.email && (<Error>{errores.email}</Error>)}
+                    <Campo>
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            type={"password"}
+                            name={"password"}
+                            id={"password"}
+                            placeholder={"Tu contraseña"}
+                            value={password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                    </Campo>
+                    {errores.password && (<Error>{errores.password}</Error>)}
+                    <Submit
+                        type="submit"
+                        value={"Iniciar Sesión"}
                     />
-                </Campo>
-                {errores.email && (<Error>{errores.email}</Error>)}
-                <Campo>
-                    <label htmlFor="password">Contraseña</label>
-                    <input
-                        type={"password"}
-                        name={"password"}
-                        id={"password"}
-                        placeholder={"Tu contraseña"}
-                        value={password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                </Campo>
-                {errores.password && (<Error>{errores.password}</Error>)}
-                <Submit
-                    type="submit"
-                    value={"Iniciar Sesión"}
-                />
-            </Formulario>
+                </Formulario>
+            </div>
         </Layout>
     )
 }

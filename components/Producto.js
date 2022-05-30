@@ -2,10 +2,12 @@ import Styles from '../styles/Prodcuto.module.css';
 import {formatDistanceToNow} from "date-fns";
 import {es} from 'date-fns/locale'
 import Link from "next/link";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export default function Producto({producto, setLoading}) {
-    const { id, comentarios, creado, descripcion, empresa, nombre, url, imagen, votos } = producto;
+    const { id, comentarios, creado, descripcion, nombre, imagen, votos } = producto;
+
+    const [imgReady, setImgReady] = useState(false);
 
     useEffect(() => {
         setLoading(false);
@@ -15,7 +17,21 @@ export default function Producto({producto, setLoading}) {
         <li className={Styles.li}>
             <div className={Styles.descripcion}>
                 <div>
-                    <img className={Styles.imagen} src={imagen} alt={`${nombre} imagen`} />
+                    <picture>
+                        { !imgReady && (
+                            <img
+                                className={Styles.imgLoader}
+                                src={"/static/img/pre-loading.jpg"}
+                                alt="Cargando imagen"
+                            />
+                        ) }
+                        <img
+                            className={Styles.imagen}
+                            src={imagen}
+                            alt={`${nombre} imagen`}
+                            onLoad={() => setImgReady(true)}
+                        />
+                    </picture>
                 </div>
                 <div>
                     <Link href={`/productos/${id}`}>

@@ -165,7 +165,7 @@ export default function Product() {
                 <div className={"contenedor"}>
                     <h1 className={Styles.titulo}>{nombre}</h1>
                     <div className={Styles.contenedorProducto}>
-                        <div>
+                        <div className={"bg-white p-2"}>
                             <p>Publicado hace: {creado ? formatDistanceToNow( new Date(creado), {locale: es}) : formatDistanceToNow( Date.now(), {locale: es})}</p>
                             <p>Por: <span className={Styles.creador}>{creador?.nombre ? creador.nombre : ''}</span> <b>{empresa}</b></p>
                             <img className={Styles.imagen} src={imagen} alt={`${nombre} imagen`}/>
@@ -209,7 +209,7 @@ export default function Product() {
                                 )
                             }
                         </div>
-                        <aside>
+                        <aside className={`bg-white p-2 ${Styles.aside}`}>
                             <Boton
                                 target={"_blank"}
                                 bgColor={true}

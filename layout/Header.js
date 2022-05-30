@@ -23,7 +23,7 @@ export default function Header() {
                 <div className={Styles.ui}>
                         { usuario ? (
                             <ul className={Styles.ul}>
-                                <li>Hola: {usuario.displayName}</li>
+                                <li>Hola: <span style={{ textTransform: "capitalize" }}>{usuario.displayName.toLowerCase()}</span></li>
                                 <li>
                                     <Boton
                                         bgColor={"true"}

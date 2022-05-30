@@ -7,11 +7,14 @@ import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import { collection , addDoc } from 'firebase/firestore';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import Mensaje from "../components/Mensaje";
 
 export default function NuevoProducto(){
     // State imagenes
     const [urlImagen, setUrlImagen] = useState('');
     const [uploading, setUploading] = useState(false);
+    const [mensaje, setMensaje] = useState('');
+    const [tipo, setTipo] = useState('');
 
     const [error, setError] = useState('');
     const router = useRouter();
@@ -28,9 +31,6 @@ export default function NuevoProducto(){
     const { nombre, empresa, imagen, url, descripcion } = valores;
 
     const { usuario, firebase } = useContext(FirebaseContext);
-
-    /*console.log(usuario.reloadUserInfo);
-    console.log(usuario.displayName);*/
 
     const handleImageUpload = e => {
         console.log('Me ejecuté')
@@ -90,9 +90,21 @@ export default function NuevoProducto(){
         }
 
         try {
-            await addDoc(collection(firebase.db, "productos"), producto);
+           await addDoc(collection(firebase.db, "productos"), producto);
+            setTipo('success');
+            setMensaje('Producto agregado exitosamente');
+
+           setTimeout(() => {
+               setMensaje('');
+           },5000);
         } catch (error) {
             console.error(error);
+            setMensaje('Ocurrió un error');
+            setTipo('error');
+
+            setTimeout(() => {
+                setMensaje('');
+            },5000);
         }
     }
 
@@ -107,6 +119,12 @@ export default function NuevoProducto(){
                 noValidate
                 className={"bg-white"}
             >
+                { mensaje && (
+                    <Mensaje
+                        tipo={tipo}
+                        mensaje={mensaje}
+                    />
+                )}
                 <fieldset>
                     <legend>Información general</legend>
                     { error && <Error>{error}</Error> }

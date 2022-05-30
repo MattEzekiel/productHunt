@@ -32,6 +32,10 @@
     padding: 0 2rem;
 }
 
+.aside {
+    height: fit-content;
+}
+
 @media (min-width: 768px) {
     .contenedorProducto {
         display: grid;

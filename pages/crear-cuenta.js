@@ -38,56 +38,61 @@ export default function CrearCuenta() {
         <Layout
             titulo={"Crear Cuenta"}
         >
-            <h1 style={{ textAlign: "center", marginTop: "5rem" }}>Crear Cuenta</h1>
-            <Formulario
-                onSubmit={handleSubmit}
-                noValidate
+            <div
+                style={{minHeight: "67.1vh"}}
             >
-                { error && <Error>{error}</Error> }
-                <Campo>
-                    <label htmlFor="nombre">Nombre</label>
-                    <input
-                        type={"text"}
-                        name={"nombre"}
-                        id={"nombre"}
-                        placeholder={"Tu nombre"}
-                        value={nombre}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
+                <h1 style={{ textAlign: "center", marginTop: "5rem" }}>Crear Cuenta</h1>
+                <Formulario
+                    onSubmit={handleSubmit}
+                    noValidate
+                    className={"bg-white"}
+                >
+                    { error && <Error>{error}</Error> }
+                    <Campo>
+                        <label htmlFor="nombre">Nombre</label>
+                        <input
+                            type={"text"}
+                            name={"nombre"}
+                            id={"nombre"}
+                            placeholder={"Tu nombre"}
+                            value={nombre}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                    </Campo>
+                    {errores.nombre && (<Error>{errores.nombre}</Error>)}
+                    <Campo>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type={"email"}
+                            name={"email"}
+                            id={"email"}
+                            placeholder={"Tu email"}
+                            value={email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                    </Campo>
+                    {errores.email && (<Error>{errores.email}</Error>)}
+                    <Campo>
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            type={"password"}
+                            name={"password"}
+                            id={"password"}
+                            placeholder={"Tu contraseña"}
+                            value={password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                    </Campo>
+                    {errores.password && (<Error>{errores.password}</Error>)}
+                    <Submit
+                        type="submit"
+                        value={"Crear Cuenta"}
                     />
-                </Campo>
-                {errores.nombre && (<Error>{errores.nombre}</Error>)}
-                <Campo>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type={"email"}
-                        name={"email"}
-                        id={"email"}
-                        placeholder={"Tu email"}
-                        value={email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                </Campo>
-                {errores.email && (<Error>{errores.email}</Error>)}
-                <Campo>
-                    <label htmlFor="password">Contraseña</label>
-                    <input
-                        type={"password"}
-                        name={"password"}
-                        id={"password"}
-                        placeholder={"Tu contraseña"}
-                        value={password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                </Campo>
-                {errores.password && (<Error>{errores.password}</Error>)}
-                <Submit
-                    type="submit"
-                    value={"Crear Cuenta"}
-                />
-            </Formulario>
+                </Formulario>
+            </div>
         </Layout>
     )
 }

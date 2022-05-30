@@ -75,3 +75,7 @@
     margin: 0.8rem 0;
     color: #888;
 }
+
+.imgLoader {
+    position: absolute;
+}
