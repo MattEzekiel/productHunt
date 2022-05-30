@@ -7,6 +7,7 @@ export default function Layout({ children, titulo }) {
             <Head>
                 <html lang={"es"} />
                 <title>{titulo}</title>
+                <link rel="stylesheet" href="/static/css/app.css" />
             </Head>
             <Header />
             <main>

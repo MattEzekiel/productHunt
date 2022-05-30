@@ -12,10 +12,8 @@ import resizeAndCropImage from "react-firebase-file-uploader/lib/utils/image";
 
 export default function NuevoProducto(){
     // State imagenes
-    const [nombreImagen, setNombre] = useState('');
-    const [subiendo, setSubiendo] = useState(false);
-    const [progreso, setProgreso] = useState(0);
     const [urlImagen, setUrlImagen] = useState('');
+    const [uploading, setUploading] = useState(false);
 
     const [error, setError] = useState('');
     const router = useRouter();
@@ -23,7 +21,7 @@ export default function NuevoProducto(){
     const STATE_INCIAL = {
         nombre: '',
         empresa: '',
-        // imagen: '',
+        imagen: '',
         url: '',
         descripcion: ''
     }
@@ -33,66 +31,69 @@ export default function NuevoProducto(){
 
     const { usuario, firebase } = useContext(FirebaseContext);
 
+    /*console.log(usuario.reloadUserInfo);
+    console.log(usuario.displayName);*/
+
+    const handleImageUpload = e => {
+        console.log('Me ejecuté')
+        // Se obtiene referencia de la ubicación donde se guardará la imagen
+        const file = e.target.files[0];
+        const imageRef = ref(firebase.storage, 'products/' + file.name);
+
+        // Se inicia la subida
+        setUploading(true);
+        const uploadTask = uploadBytesResumable(imageRef, file);
+
+        // Registra eventos para cuando detecte un cambio en el estado de la subida
+        uploadTask.on('state_changed',
+            // Muestra progreso de la subida
+            snapshot => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log(`Subiendo imagen: ${progress}% terminado`);
+            },
+            // En caso de error
+            error => {
+                setUploading(false);
+                console.error(error);
+            },
+            // Subida finalizada correctamente
+            () => {
+                setUploading(false);
+                getDownloadURL(uploadTask.snapshot.ref).then(url => {
+                    console.log('Imagen disponible en:', url);
+                    setUrlImagen(url);
+                });
+            }
+        );
+    };
+
+    if (!usuario) {
+        return router.push('/404');
+    }
+
     async function crearProducto() {
-        const [uploading, setUploading] = useState(false);
-        const [URLImage, setURLImage] = useState('');
-
-        if (!usuario) {
-            return router.push('/');
-        }
-
-        const handleImageUpload = e => {
-            // Se obtiene referencia de la ubicación donde se guardará la imagen
-            const file = e.target.files[0];
-            const imageRef = ref(firebase.storage, 'products/' + file.name);
-
-            // Se inicia la subida
-            setUploading(true);
-            const uploadTask = uploadBytesResumable(imageRef, file);
-
-            // Registra eventos para cuando detecte un cambio en el estado de la subida
-            uploadTask.on('state_changed',
-                // Muestra progreso de la subida
-                snapshot => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log(`Subiendo imagen: ${progress}% terminado`);
-                },
-                // En caso de error
-                error => {
-                    setUploading(false);
-                    console.error(error);
-                },
-                // Subida finalizada correctamente
-                () => {
-                    setUploading(false);
-                    getDownloadURL(uploadTask.snapshot.ref).then(url => {
-                        console.log('Imagen disponible en:', url);
-                        setURLImage(url);
-                    });
-                }
-            );
-        };
 
         const producto = {
             nombre,
             empresa,
             url,
-            urlImagen,
+            imagen: urlImagen,
             descripcion,
             votos: 0,
             comentarios: [],
-            creado: Date.now()
+            creado: Date.now(),
+            creador: {
+                id: usuario.uid,
+                nombre: usuario.displayName
+            },
+            haVotado: []
         }
 
         try {
-            await addDoc(collection(firebase.db,"productos"), producto);
+            await addDoc(collection(firebase.db, "productos"), producto);
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
-    }
-
-    const handleImageUpload = e => {
-        console.log(e.target.files);
     }
 
 

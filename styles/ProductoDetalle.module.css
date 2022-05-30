@@ -1,0 +1,41 @@
+.titulo {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.comentarioHeading {
+    margin-top: 2rem;
+}
+
+.imagen {
+    max-width: 500px;
+    width: 100%;
+}
+
+.creador {
+    text-transform: capitalize;
+}
+
+.esCreador {
+    padding: .5rem 2rem;
+    background-color: #DA552F;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+.comentario {
+    border: 1px solid #E1E1E1;
+    padding: 0 2rem;
+}
+
+@media (min-width: 768px) {
+    .contenedorProducto {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 2rem;
+    }
+}

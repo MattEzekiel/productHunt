@@ -20,7 +20,7 @@ export default function Login() {
 
     async function iniciarSesion() {
         try {
-            const usuario = await firebase.login( email, password );
+            await firebase.login( email, password );
             await router.push('/');
         } catch (e) {
             console.error(e.message)

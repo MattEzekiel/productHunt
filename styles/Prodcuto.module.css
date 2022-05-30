@@ -1,0 +1,77 @@
+.imagen {
+    width: 200px;
+}
+
+.li {
+    padding: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.descripcion {
+    flex: 0 1 600px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 2rem;
+}
+
+.comentario {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.comentarioContendor {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e1e1e1;
+    padding: .3rem 1rem;
+    margin-right: 2rem;
+}
+
+.comentarioImg {
+    width: 3rem;
+    margin-right: 2rem;
+}
+
+.comentarioP {
+    font-size: 1.6rem;
+    margin-right: 1rem;
+    font-weight: 700;
+}
+
+.votosContenedor {
+    flex: 0 0 auto;
+    text-align: center;
+    border: 1px solid #e1e1e1;
+    padding: 1rem 2rem;
+}
+
+.flecha {
+    display: block;
+    font-size: 2rem;
+}
+
+.votos {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.titulo {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.titulo:hover {
+    cursor: pointer;
+}
+
+.descripcionText {
+    font-size: 1.6rem;
+    margin: 0.8rem 0;
+    color: #888;
+}
