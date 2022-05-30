@@ -2,10 +2,15 @@ import Styles from '../styles/Prodcuto.module.css';
 import {formatDistanceToNow} from "date-fns";
 import {es} from 'date-fns/locale'
 import Link from "next/link";
+import {useEffect} from "react";
 
-export default function Producto({producto}) {
-    // console.log(producto);
-    const { id, comentarios, creado, descripcion, empresa, nombre, url, imagen, votos } = producto
+export default function Producto({producto, setLoading}) {
+    const { id, comentarios, creado, descripcion, empresa, nombre, url, imagen, votos } = producto;
+
+    useEffect(() => {
+        setLoading(false);
+    },[])
+
     return (
         <li className={Styles.li}>
             <div className={Styles.descripcion}>

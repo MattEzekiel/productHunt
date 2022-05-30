@@ -1,6 +1,10 @@
-.listado-productos {
-    background-color: white;
+main {
+    background-color: #E1E1E1;
 }
+
+/*.listado-productos {
+    background-color: white;
+}*/
 
 .contenedor {
     max-width: 1200px;
@@ -13,10 +17,22 @@
     background-color: white;
 }
 
+.bg-dark {
+    background-color: #3d3d3d;
+}
+
 .text-center {
     text-align: center;
 }
 
 .mt-3 {
     margin-top: 3rem;
+}
+
+.pt-3 {
+    padding-top: 3rem;
+}
+
+.py-3 {
+    padding: 3rem 0;
 }

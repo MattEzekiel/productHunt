@@ -2,7 +2,7 @@ import Layout from "../../layout/Layout";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { FirebaseContext } from "../../firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import Producto404 from "../../layout/404";
 import Styles from '../../styles/ProductoDetalle.module.css'
 import {Campo, Submit} from "../../ui/Formulario";
@@ -16,6 +16,7 @@ export default function Product() {
     const [error404, setError404] = useState(false);
     const [loading, setloading] = useState(true);
     const [comentario, setComentario] = useState({});
+    const [consultarDB, setConsultarDB] = useState(true);
 
     // Routing
     const router = useRouter();
@@ -25,15 +26,17 @@ export default function Product() {
     const { firebase, usuario } = useContext(FirebaseContext);
 
     useEffect(() => {
-        if (id) {
+        if (id && consultarDB) {
             const obtenerProducto = async () => {
                 const docRef = doc(firebase.db, "productos", id);
                 const docSnap = await getDoc(docRef);
                 const datos = await docSnap.data();
                 if (docSnap.exists()) {
                     setProducto(datos);
+                    setConsultarDB(false);
                 } else {
                     setError404(true);
+                    setConsultarDB(false);
                 }
 
                 setloading(false);
@@ -42,6 +45,16 @@ export default function Product() {
             obtenerProducto();
         }
     },[id, producto]);
+
+    if (Object.keys(producto).length === 0 && !error404) {
+        return (
+            <Layout
+                titulo={"Cargando"}
+            >
+             <h1 className={"text-center mt-3"}>Cargando...</h1>
+            </Layout>
+        )
+    }
 
     const { comentarios, creado, descripcion, empresa, nombre, url, imagen, votos, creador, haVotado } = producto;
 
@@ -69,6 +82,8 @@ export default function Product() {
             } catch (error) {
                 console.error("Error",error)
             }
+
+            setConsultarDB(true); // Hay un Voto
         }
     }
 
@@ -111,10 +126,39 @@ export default function Product() {
         } catch (error) {
             console.error("Error",error)
         }
+
+        setConsultarDB(true); // Hay un comentario
+    }
+    const puedeBorrar = () => {
+        if (!usuario) return false;
+
+        if (creador.id === usuario.uid) {
+            return true;
+        }
     }
 
+    const eliminarProducto = async e => {
+        e.preventDefault();
+
+        if (!usuario) {
+            router.push('/login');
+        }
+
+        if (creador.id !== usuario.uid) {
+            return router.push('/');
+        }
+
+        try {
+            await deleteDoc(doc(firebase.db, "productos", id));
+            await router.push('/')
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+
     return (
-        <Layout>
+        <Layout titulo={nombre ? nombre : 'Página no encontrada'}>
             { error404 ? (
                 <Producto404 />
             ) : (
@@ -179,6 +223,13 @@ export default function Product() {
                             )}
                         </aside>
                     </div>
+                    { puedeBorrar() && (
+                        <div className={"mt-3"}>
+                            <Boton
+                                onClick={eliminarProducto}
+                            >Eliminar Producto</Boton>
+                        </div>
+                    ) }
                 </div>
             )}
         </Layout>

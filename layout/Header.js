@@ -15,7 +15,7 @@ export default function Header() {
             <div className={Styles.contenedor}>
                 <div className={Styles.ui}>
                     <Link href={"/"}>
-                        <p className={Styles.logo}>P</p>
+                        <a><p className={Styles.logo}>P</p></a>
                     </Link>
                     <Buscar />
                     <Navegation />
@@ -35,12 +35,12 @@ export default function Header() {
                           <ul className={Styles.ul}>
                               <li>
                                   <Link href={"/login"}>
-                                      <Boton bgColor={"true"}>Iniciar Sesión</Boton>
+                                      <a><Boton bgColor={"true"}>Iniciar Sesión</Boton></a>
                                   </Link>
                               </li>
                               <li>
                                   <Link href={"/crear-cuenta"}>
-                                      <Boton>Crear Cuenta</Boton>
+                                      <a><Boton>Crear Cuenta</Boton></a>
                                   </Link>
                               </li>
                           </ul>

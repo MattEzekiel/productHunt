@@ -1,21 +1,26 @@
 import Header from "./Header";
-import Head from "next/head";
+import {useEffect, useState} from "react";
+import Footer from "./Footer";
 
 export default function Layout({ children, titulo }) {
+    const [ready,setReady] = useState(false);
+
+    useEffect(() => {
+        setReady(true);
+    },[])
     return (
         <div>
-            <Head>
-                <html lang={"es"} />
-                <title>{titulo}</title>
-                <link rel="stylesheet" href="/static/css/app.css" />
-            </Head>
+            {ready && (
+                <head>
+                    <title>{titulo}</title>
+                    <link rel="stylesheet" href="/static/css/app.css" />
+                </head>
+            )}
             <Header />
-            <main>
+            <main className={"py-3"}>
                 {children}
             </main>
-            <footer>
-                <p>Footer</p>
-            </footer>
+            <Footer />
         </div>
     )
 }

@@ -3,12 +3,10 @@ import {Formulario, Campo, Submit, Error} from "../ui/Formulario";
 import useValidacion from "../hooks/useValidacion";
 import validarCrearProducto from "../validacion/validarCrearProducto";
 import { FirebaseContext } from "../firebase";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import { collection , addDoc } from 'firebase/firestore';
-// import FirebaseFileUploader from "react-firebase-file-uploader/src";
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
-import resizeAndCropImage from "react-firebase-file-uploader/lib/utils/image";
 
 export default function NuevoProducto(){
     // State imagenes
@@ -67,9 +65,11 @@ export default function NuevoProducto(){
         );
     };
 
-    if (!usuario) {
-        return router.push('/404');
-    }
+    useEffect(() => {
+        if (!usuario) {
+            return router.push("/404");
+        }
+    },[router])
 
     async function crearProducto() {
 
@@ -101,10 +101,11 @@ export default function NuevoProducto(){
         <Layout
             titulo={"Agregar Nuevo Producto"}
         >
-            <h1 style={{ textAlign: "center", marginTop: "5rem" }}>Agregar Nuevo Producto</h1>
+            <h1 style={{ textAlign: "center", paddingTop: "5rem" }}>Agregar Nuevo Producto</h1>
             <Formulario
                 onSubmit={handleSubmit}
                 noValidate
+                className={"bg-white"}
             >
                 <fieldset>
                     <legend>Información general</legend>

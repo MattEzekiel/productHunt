@@ -4,6 +4,8 @@ export const Formulario = styled.form`
   max-width: 600px;
   width: 95%;
   margin: 5rem auto 0 auto;
+  padding: 1rem;
+  border: 3px solid #DA552F;
   
   fieldset {
     margin: 2rem 0;
