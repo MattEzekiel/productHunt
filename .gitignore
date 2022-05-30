@@ -36,3 +36,4 @@ yarn-error.log*
 .idea/modules.xml
 .idea/producthunt.iml
 .idea/vcs.xml
+.idea
