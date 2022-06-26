@@ -9,6 +9,7 @@ import {Campo, Submit} from "../../ui/Formulario";
 import Boton from "../../ui/Boton";
 import { formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
+import GoogleMaps from "../../components/GoogleMaps";
 
 export default function Product() {
     // State
@@ -17,6 +18,8 @@ export default function Product() {
     const [loading, setloading] = useState(true);
     const [comentario, setComentario] = useState({});
     const [consultarDB, setConsultarDB] = useState(true);
+    const [dir, setDireccion] = useState('');
+    const [detalle, setDetalle] = useState(true);
 
     // Routing
     const router = useRouter();
@@ -56,7 +59,7 @@ export default function Product() {
         )
     }
 
-    const { comentarios, creado, descripcion, empresa, nombre, url, imagen, votos, creador, haVotado } = producto;
+    const { comentarios, creado, descripcion, empresa, nombre, url, imagen, votos, creador, haVotado, lat, lng, direccion } = producto;
 
     const votarProducto = async () => {
         if (!usuario) {
@@ -220,6 +223,18 @@ export default function Product() {
                                 <Boton
                                     onClick={votarProducto}
                                 >Votar</Boton>
+                            )}
+                            { typeof direccion === "string" && (
+                                <div style={{ maxWidth: '450px', position: 'relative', maxHeight: "fit-content", overflow: 'hidden'}}>
+                                    <p>Dirección: {direccion} </p>
+                                    <GoogleMaps
+                                        latitud={lat}
+                                        longitud={lng}
+                                        direccion={direccion}
+                                        setDireccion={setDireccion}
+                                        detalle={detalle}
+                                    />
+                                </div>
                             )}
                         </aside>
                     </div>

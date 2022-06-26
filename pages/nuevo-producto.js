@@ -8,6 +8,7 @@ import {useRouter} from "next/router";
 import { collection , addDoc } from 'firebase/firestore';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import Mensaje from "../components/Mensaje";
+import GoogleMaps from "../components/GoogleMaps";
 
 export default function NuevoProducto(){
     // State imagenes
@@ -15,6 +16,10 @@ export default function NuevoProducto(){
     const [uploading, setUploading] = useState(false);
     const [mensaje, setMensaje] = useState('');
     const [tipo, setTipo] = useState('');
+    const [mostrarDireccion, setMostrarDireccion] = useState(false);
+    const [direccion, setDireccion] = useState({});
+    const [latitud, setLatitud] = useState(0);
+    const [longitud, setLongitud] = useState(0);
 
     const [error, setError] = useState('');
     const router = useRouter();
@@ -24,7 +29,10 @@ export default function NuevoProducto(){
         empresa: '',
         imagen: '',
         url: '',
-        descripcion: ''
+        descripcion: '',
+        longitud: 0,
+        latitud: 0,
+        direccion: ''
     }
     const { valores, errores, handleSubmit, handleChange, handleBlur } = useValidacion(STATE_INCIAL,validarCrearProducto, crearProducto);
 
@@ -33,7 +41,7 @@ export default function NuevoProducto(){
     const { usuario, firebase } = useContext(FirebaseContext);
 
     const handleImageUpload = e => {
-        console.log('Me ejecuté')
+        // console.log('Me ejecuté')
         // Se obtiene referencia de la ubicación donde se guardará la imagen
         const file = e.target.files[0];
         const imageRef = ref(firebase.storage, 'products/' + file.name);
@@ -65,6 +73,10 @@ export default function NuevoProducto(){
         );
     };
 
+    const handleCheck = e => {
+        e.target.checked ? setMostrarDireccion(true) : setMostrarDireccion(false);
+    }
+
     useEffect(() => {
         if (!usuario) {
             return router.push("/404");
@@ -79,6 +91,9 @@ export default function NuevoProducto(){
             url,
             imagen: urlImagen,
             descripcion,
+            lat: Number(latitud),
+            lng: Number(longitud),
+            direccion,
             votos: 0,
             comentarios: [],
             creado: Date.now(),
@@ -96,7 +111,7 @@ export default function NuevoProducto(){
 
            setTimeout(() => {
                setMensaje('');
-           },5000);
+           },3000);
         } catch (error) {
             console.error(error);
             setMensaje('Ocurrió un error');
@@ -193,6 +208,29 @@ export default function NuevoProducto(){
                         />
                     </Campo>
                     {errores.descripcion && (<Error>{errores.descripcion}</Error>)}
+                </fieldset>
+                <fieldset>
+                    <legend>Dirección</legend>
+                    <input
+                        type="checkbox"
+                        id={"check"}
+                        name={"check"}
+                        onChange={handleCheck}
+                    />
+                    <label htmlFor="check" style={{ paddingLeft: '10px'}}>¿Tiene dirección física?</label>
+                    { mostrarDireccion && (
+                        <div style={{ maxWidth: '530px', position: 'relative', maxHeight: "fit-content", overflow: 'hidden'}}>
+                            <label htmlFor="direccion">Seleccione la dirección</label>
+                            <GoogleMaps
+                                direccion={direccion}
+                                setDireccion={setDireccion}
+                                latitud={latitud}
+                                setLatitud={setLatitud}
+                                longitud={longitud}
+                                setLongitud={setLongitud}
+                            />
+                        </div>
+                    )}
                 </fieldset>
                 <Submit
                     type="submit"
