@@ -1,6 +1,8 @@
 .header {
     border-bottom: 2px solid var(--gris3);
     padding: 1rem 0;
+    position: relative;
+    overflow-y: hidden;
 }
 
 .contenedor {
@@ -33,9 +35,80 @@
     margin-right: 2rem;
 }
 
+.hamburguesa {
+    position: absolute;
+    left: auto;
+    right: 3vw;
+    top: 20px;
+    z-index: 5;
+    background-color: transparent;
+    border: 1px solid var(--naranja);
+    color: var(--naranja);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hamburguesa span {
+    font-size: 0;
+    display: block;
+    height: 3px;
+    background-color: var(--naranja);
+    width: 100%;
+    border-radius: 2px;
+    transition: 0.3s ease-in-out;
+}
+
+.hamburguesa span::before,
+.hamburguesa span::after {
+    content: '';
+    height: 3px;
+    background-color: var(--naranja);
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+    transition: 0.3s ease-in-out;
+}
+
+.hamburguesa span::before {
+    transform: translateY(-7px);
+}
+
+.hamburguesa span::after {
+    transform: translateY(4px);
+}
+
+.abierto::before {
+    transform: rotate(90deg) !important;
+}
+
+.abierto::after {
+    transform: rotate(130deg) !important;
+    opacity: 0;
+}
+
+.abierto {
+    transform: rotate(135deg) !important;
+}
+
 @media (min-width: 768px) {
     .contenedor {
         display: flex;
         justify-content: space-between;
+    }
+}
+
+@media (max-width: 991px) {
+    .contenedor {
+        margin-top: 4rem;
+    }
+
+    .ui {
+        justify-content: center;
+        padding-bottom: 2rem;
     }
 }

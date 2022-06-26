@@ -1,10 +1,16 @@
 main {
     background-color: #E1E1E1;
+    background-image: url("../img/background.webp");
+    background-blend-mode: color-burn;
+    min-height: calc(100vh - 202px);
 }
 
-/*.listado-productos {
-    background-color: white;
-}*/
+.nuevo-producto {
+    max-width: 530px;
+    position: relative;
+    max-height: fit-content;
+    overflow: hidden;
+}
 
 .contenedor {
     max-width: 1200px;
@@ -39,4 +45,10 @@ main {
 
 .p-2 {
     padding: 2rem;
+}
+
+@media (max-width: 991px) {
+    .nuevo-producto {
+        max-width: 100%;
+    }
 }

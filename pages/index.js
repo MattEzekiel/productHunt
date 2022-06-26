@@ -1,7 +1,7 @@
 import Layout from "../layout/Layout";
 import Producto from "../components/Producto";
 import useProdcutos from "../hooks/useProdcutos";
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import Spinner from "../components/Spinner";
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
                                 key={producto.id}
                                 producto={producto}
                                 setLoading={setLoading}
-                            />)
+                            /> )
                         ) }
                     </ul>
                 </div>

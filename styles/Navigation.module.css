@@ -12,3 +12,30 @@
 .nav a:last-of-type {
     margin-right: 0;
 }
+
+@media (max-width: 991px) {
+    .nav {
+        position: absolute;
+        top: -100vh;
+        left: 0;
+        right: 0;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        transition: top 0.3s ease-in-out;
+    }
+
+    .abierto {
+        top: 0;
+        height: 100%;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 20px;
+    }
+}

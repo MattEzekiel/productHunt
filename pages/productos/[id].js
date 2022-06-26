@@ -5,7 +5,7 @@ import { FirebaseContext } from "../../firebase";
 import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import Producto404 from "../../layout/404";
 import Styles from '../../styles/ProductoDetalle.module.css'
-import {Campo, Submit} from "../../ui/Formulario";
+import { Campo, Submit } from "../../ui/Formulario";
 import Boton from "../../ui/Boton";
 import { formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
@@ -135,7 +135,8 @@ export default function Product() {
     const puedeBorrar = () => {
         if (!usuario) return false;
 
-        if (creador.id === usuario.uid) {
+        // Usuario admin puede borrar cursos
+        if (creador.id === usuario.uid || usuario.uid === 'zEHVOc7x0uddvyjExry5n53aMVC3') {
             return true;
         }
     }

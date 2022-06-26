@@ -79,3 +79,21 @@
 .imgLoader {
     position: absolute;
 }
+
+@media (max-width: 991px) {
+    .li {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 1rem 15px;
+    }
+
+    .descripcion {
+        display: flex;
+        flex-direction: column;
+        flex: 0 1 auto;
+    }
+
+    .descripcion picture img {
+        width: 100%;
+    }
+}

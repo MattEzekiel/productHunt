@@ -12,6 +12,7 @@ export const Formulario = styled.form`
     border: 1px solid var(--gris3);
     font-size: 2rem;
     padding: 2rem;
+    width: 100%;
   }
 `
 
@@ -32,6 +33,17 @@ export const Campo = styled.div`
   
   textarea {
     height: 400px;
+  }
+  
+  @media (max-width: 991px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 100%;
+    
+    label {
+      flex: 0 0 60px;
+    }
   }
 `;
 

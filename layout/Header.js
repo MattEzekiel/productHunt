@@ -4,21 +4,52 @@ import Navegation from "../components/Navegation";
 import Styles from '../styles/Header.module.css';
 import Boton from "../ui/Boton";
 import { FirebaseContext } from '../firebase';
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
+import {is_mobile} from "../helpers/responsive";
 
 export default function Header() {
     const { usuario , firebase } = useContext(FirebaseContext);
-    // console.log(usuario);
+    const [mobile, setMobile] = useState(false);
+    const [abrir, setAbrir] = useState(false);
+
+    useEffect(() => {
+        setMobile(is_mobile);
+        window.addEventListener('resize', () => {
+            setMobile(is_mobile());
+        });
+    },[])
+
+    const handleMenu = () => {
+        setAbrir(!abrir);
+    }
 
     return (
         <header className={Styles.header}>
             <div className={Styles.contenedor}>
                 <div className={Styles.ui}>
                     <Link href={"/"}>
-                        <a><p className={Styles.logo}>P</p></a>
+                        <a>
+                            <p className={Styles.logo}>P</p>
+                        </a>
                     </Link>
                     <Buscar />
-                    <Navegation />
+                    { mobile ? (
+                        <div>
+                            <button
+                                type={"button"}
+                                id={"hamburguesa"}
+                                onClick={handleMenu}
+                                className={Styles.hamburguesa}
+                            >
+                                <span className={abrir ? Styles.abierto : ''}>Menu</span>
+                            </button>
+                            <Navegation
+                                abrir={abrir}
+                            />
+                        </div>
+                    ) : (
+                        <Navegation />
+                    ) }
                 </div>
                 <div className={Styles.ui}>
                         { usuario ? (

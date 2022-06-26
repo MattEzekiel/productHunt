@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Styles from '../styles/Navigation.module.css';
 import {useContext} from "react";
-import {FirebaseContext} from "../firebase";
+import { FirebaseContext } from "../firebase";
 
-export default function Navegation() {
+export default function Navegation({abrir}) {
     const { usuario } = useContext(FirebaseContext);
+
     return(
-        <nav className={Styles.nav}>
+        <nav className={`${Styles.nav} ${abrir ? Styles.abierto : ''}`}>
             <ul>
                 <li>
                     <Link href={"/"}>Inicio</Link>
@@ -18,6 +19,13 @@ export default function Navegation() {
                     usuario && (
                         <li>
                             <Link href={"/nuevo-producto"}>Nuevo Producto</Link>
+                        </li>
+                    )
+                }
+                {
+                    usuario?.uid === 'zEHVOc7x0uddvyjExry5n53aMVC3' && (
+                        <li>
+                            <Link href={"/panel"}>Panel</Link>
                         </li>
                     )
                 }

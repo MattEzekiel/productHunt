@@ -1,0 +1,8 @@
+.imgLoader {
+    position: absolute;
+}
+
+.imagen {
+    max-width: 200px;
+    width: 100%;
+}

@@ -1,10 +1,10 @@
 import Layout from "../layout/Layout";
-import {Formulario, Campo, Submit, Error} from "../ui/Formulario";
+import { Formulario, Campo, Submit, Error } from "../ui/Formulario";
 import useValidacion from "../hooks/useValidacion";
 import validarCrearProducto from "../validacion/validarCrearProducto";
 import { FirebaseContext } from "../firebase";
-import {useContext, useEffect, useState} from "react";
-import {useRouter} from "next/router";
+import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { collection , addDoc } from 'firebase/firestore';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import Mensaje from "../components/Mensaje";
@@ -177,6 +177,7 @@ export default function NuevoProducto(){
                             name={"imagen"}
                             id={"imagen"}
                             value={imagen}
+                            style={{ overflow: 'hidden' }}
                             onChange={handleImageUpload}
                         />
                     </Campo>
@@ -219,7 +220,7 @@ export default function NuevoProducto(){
                     />
                     <label htmlFor="check" style={{ paddingLeft: '10px'}}>¿Tiene dirección física?</label>
                     { mostrarDireccion && (
-                        <div style={{ maxWidth: '530px', position: 'relative', maxHeight: "fit-content", overflow: 'hidden'}}>
+                        <div className={"nuevo-producto"}>
                             <label htmlFor="direccion">Seleccione la dirección</label>
                             <GoogleMaps
                                 direccion={direccion}
@@ -233,7 +234,7 @@ export default function NuevoProducto(){
                     )}
                 </fieldset>
                 <Submit
-                    type="submit"
+                    type={"submit"}
                     value={"Crear Producto"}
                 />
             </Formulario>

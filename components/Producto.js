@@ -11,7 +11,7 @@ export default function Producto({producto, setLoading}) {
 
     useEffect(() => {
         setLoading(false);
-    },[])
+    },[]);
 
     return (
         <li className={Styles.li}>
