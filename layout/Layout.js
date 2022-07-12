@@ -6,7 +6,7 @@ export default function Layout({ children, titulo }) {
     return (
         <>
             <head>
-                <title>{titulo}</title>
+                <title>Product Hunt | {titulo}</title>
                 <link rel="stylesheet" href="/static/css/app.css" />
             </head>
             <Header />

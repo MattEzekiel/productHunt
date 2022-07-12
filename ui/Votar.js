@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 
-const Boton = styled.a`
+const Votar = styled.button`
   font-weight: 700;
   text-transform: uppercase;
-  border: 1px solid var(--gris3);
-  padding: 0.8rem 2rem;
+  border: none;
+  //padding: 0.8rem 2rem;
   margin-right: 1rem;
   background-color: ${props => props.bgColor ? '#DA552F'  : 'white'};
   color: ${props => props.bgColor ? 'white' : '#000'};
@@ -12,7 +12,6 @@ const Boton = styled.a`
   justify-content: center;
   align-items: center;
   width: fit-content;
-  gap: 10px;
   
   &:last-of-type {
     margin-right: 0;
@@ -22,4 +21,4 @@ const Boton = styled.a`
     cursor: pointer;
 }`
 
-export default Boton;
+export default Votar;

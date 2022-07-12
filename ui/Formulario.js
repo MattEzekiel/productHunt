@@ -62,6 +62,11 @@ export const Submit = styled.input`
   &:hover {
     cursor: pointer;
   }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;
 
 export const Error = styled.p`

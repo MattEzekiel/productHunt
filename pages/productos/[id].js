@@ -10,6 +10,7 @@ import Boton from "../../ui/Boton";
 import { formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import GoogleMaps from "../../components/GoogleMaps";
+import Votar from "../../ui/Votar";
 
 export default function Product() {
     // State
@@ -219,11 +220,14 @@ export default function Product() {
                                 bgColor={true}
                                 href={url}
                             >Visitar Sitio Web</Boton>
-                            <p>{votos} Votos</p>
+                            <p style={{ marginTop: "30px" }}>{votos} Votos</p>
                             { usuario &&  (
-                                <Boton
+                                <Votar
                                     onClick={votarProducto}
-                                >Votar</Boton>
+                                ><svg style={{ maxWidth: "30px", width: "100%" }} xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
+                                </svg></Votar>
                             )}
                             { typeof direccion === "string" && (
                                 <div style={{ maxWidth: '450px', position: 'relative', maxHeight: "fit-content", overflow: 'hidden'}}>

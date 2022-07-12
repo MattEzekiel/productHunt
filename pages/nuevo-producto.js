@@ -111,11 +111,13 @@ export default function NuevoProducto(){
 
            setTimeout(() => {
                setMensaje('');
+               router.push('/');
            },3000);
         } catch (error) {
             console.error(error);
             setMensaje('Ocurrió un error');
             setTipo('error');
+            setError('Hubo un problema');
 
             setTimeout(() => {
                 setMensaje('');
@@ -128,7 +130,17 @@ export default function NuevoProducto(){
         <Layout
             titulo={"Agregar Nuevo Producto"}
         >
-            <h1 style={{ textAlign: "center", paddingTop: "5rem" }}>Agregar Nuevo Producto</h1>
+            <h1 style={{ textAlign: "center", paddingTop: "5rem" }}>
+                <svg style={{ maxWidth: "20px" }} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd"
+                          d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
+                          clipRule="evenodd"/>
+                </svg> Agregar Nuevo Producto <svg style={{ maxWidth: "20px" }} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd"
+                      d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
+                      clipRule="evenodd"/>
+            </svg>
+            </h1>
             <Formulario
                 onSubmit={handleSubmit}
                 noValidate
@@ -236,6 +248,7 @@ export default function NuevoProducto(){
                 <Submit
                     type={"submit"}
                     value={"Crear Producto"}
+                    disabled={ tipo === 'success' || urlImagen === null || uploading }
                 />
             </Formulario>
         </Layout>

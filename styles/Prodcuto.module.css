@@ -54,6 +54,11 @@
     font-size: 2rem;
 }
 
+.flecha svg {
+    max-width: 20px;
+    width: 100%;
+}
+
 .votos {
     margin: 0;
     font-size: 2rem;
