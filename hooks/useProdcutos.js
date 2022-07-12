@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import {FirebaseContext} from "../firebase";
+import {FirebaseContext} from "../fr";
 import {collection, getDocs, orderBy, query} from "firebase/firestore";
 
 const useProdcutos = orden => {

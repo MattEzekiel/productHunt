@@ -1,7 +1,7 @@
 import Layout from "../../layout/Layout";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import { FirebaseContext } from "../../firebase";
+import { FirebaseContext } from "../../fr";
 import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import Producto404 from "../../layout/404";
 import Styles from '../../styles/ProductoDetalle.module.css'

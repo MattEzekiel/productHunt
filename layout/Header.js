@@ -3,7 +3,7 @@ import Buscar from "../ui/Buscar";
 import Navegation from "../components/Navegation";
 import Styles from '../styles/Header.module.css';
 import Boton from "../ui/Boton";
-import { FirebaseContext } from '../firebase';
+import { FirebaseContext } from '../fr';
 import {useContext, useEffect, useState} from "react";
 import {is_mobile} from "../helpers/responsive";
 

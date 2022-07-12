@@ -2,7 +2,7 @@ import Layout from "../layout/Layout";
 import { Formulario, Campo, Submit, Error } from "../ui/Formulario";
 import useValidacion from "../hooks/useValidacion";
 import validarCrearProducto from "../validacion/validarCrearProducto";
-import { FirebaseContext } from "../firebase";
+import { FirebaseContext } from "../fr";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { collection , addDoc } from 'firebase/firestore';

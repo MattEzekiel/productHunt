@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Styles from '../styles/Navigation.module.css';
 import {useContext} from "react";
-import { FirebaseContext } from "../firebase";
+import { FirebaseContext } from "../fr";
 
 export default function Navegation({abrir}) {
     const { usuario } = useContext(FirebaseContext);

@@ -1,4 +1,4 @@
-import firebase from "../firebase";
+import firebase from "../fr";
 import {useEffect, useState} from "react";
 
 function useAutentificacion() {
